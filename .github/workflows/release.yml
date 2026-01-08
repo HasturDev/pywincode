@@ -36,7 +36,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest, windows-latest, macos-13, macos-14]
+        os: [ubuntu-latest, windows-latest, macos-13-large, macos-14]
     steps:
       - uses: actions/checkout@v4
 
@@ -44,7 +44,7 @@ jobs:
         uses: PyO3/maturin-action@v1
         with:
           target: ${{ matrix.os == 'macos-14' && 'aarch64-apple-darwin' || '' }}
-          args: --release --out dist --find-interpreter
+          args: --release --out dist -i python3.10 python3.11 python3.12 python3.13
           sccache: "true"
           manylinux: auto
 
@@ -68,7 +68,7 @@ jobs:
         uses: PyO3/maturin-action@v1
         with:
           target: ${{ matrix.target }}
-          args: --release --out dist --find-interpreter
+          args: --release --out dist -i python3.10 python3.11 python3.12 python3.13
           sccache: "true"
           manylinux: musllinux_1_2
 
