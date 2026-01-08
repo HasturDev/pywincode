@@ -1,3 +1,8 @@
+# association
+I am not associated with the wincode or bincode teams.
+I am just a fan who needs to use it in python and wants to give others the ability to do the same.
+If there are any adjustments that you feel need to be made then go to [wincode](https://github.com/anza-xyz/wincode)
+
 # pywincode
 
 Python bindings for the [wincode](https://crates.io/crates/wincode) Rust serialization library with [zerocopy](https://crates.io/crates/zerocopy) support.
