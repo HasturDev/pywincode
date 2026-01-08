@@ -72,7 +72,7 @@ jobs:
       - name: Build and install with maturin
         run: |
           maturin build --release
-          pip install target/wheels/*.whl
+          pip install pywincode --no-index --find-links target/wheels/
 
       - name: Run tests
         run: pytest tests/ -v --cov=pywincode --cov-report=xml
