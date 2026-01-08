@@ -12,10 +12,10 @@ use pyo3::prelude::*;
 
 use error::WincodeError;
 use primitives::{
-    deserialize_bool, deserialize_f32, deserialize_f64, deserialize_i8, deserialize_i16,
-    deserialize_i32, deserialize_i64, deserialize_u8, deserialize_u16, deserialize_u32,
-    deserialize_u64, serialize_bool, serialize_f32, serialize_f64, serialize_i8, serialize_i16,
-    serialize_i32, serialize_i64, serialize_u8, serialize_u16, serialize_u32, serialize_u64,
+    deserialize_bool, deserialize_f32, deserialize_f64, deserialize_i16, deserialize_i32,
+    deserialize_i64, deserialize_i8, deserialize_u16, deserialize_u32, deserialize_u64,
+    deserialize_u8, serialize_bool, serialize_f32, serialize_f64, serialize_i16, serialize_i32,
+    serialize_i64, serialize_i8, serialize_u16, serialize_u32, serialize_u64, serialize_u8,
 };
 use serialization::{
     deserialize, deserialize_bytes_list, deserialize_string, deserialize_u64_list, serialize,
@@ -23,9 +23,9 @@ use serialization::{
 };
 use zerocopy_ops::{
     f32_from_bytes, f32_into_bytes, f64_from_bytes, f64_into_bytes, u32_from_bytes, u32_into_bytes,
-    u64_from_bytes, u64_into_bytes, zerocopy_f32_array, zerocopy_f64_array, zerocopy_i8_array,
-    zerocopy_i16_array, zerocopy_i32_array, zerocopy_i64_array, zerocopy_u8_array,
-    zerocopy_u16_array, zerocopy_u32_array, zerocopy_u64_array, zerocopy_view,
+    u64_from_bytes, u64_into_bytes, zerocopy_f32_array, zerocopy_f64_array, zerocopy_i16_array,
+    zerocopy_i32_array, zerocopy_i64_array, zerocopy_i8_array, zerocopy_u16_array,
+    zerocopy_u32_array, zerocopy_u64_array, zerocopy_u8_array, zerocopy_view,
 };
 
 /// Python module for pywincode.

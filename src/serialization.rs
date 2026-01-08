@@ -185,14 +185,13 @@ fn deserialize_bytes_impl(data: &[u8]) -> Result<Vec<u8>> {
     let len_u64 = u64::from_le_bytes(len_bytes);
 
     // Check for overflow before casting to usize
-    let len = usize::try_from(len_u64).map_err(|_| {
-        Error::Deserialize(format!("length {} exceeds maximum usize", len_u64))
-    })?;
+    let len = usize::try_from(len_u64)
+        .map_err(|_| Error::Deserialize(format!("length {len_u64} exceeds maximum usize")))?;
 
     // Use checked_add to prevent overflow
-    let required_len = LEN_SIZE.checked_add(len).ok_or_else(|| {
-        Error::Deserialize("length overflow".to_string())
-    })?;
+    let required_len = LEN_SIZE
+        .checked_add(len)
+        .ok_or_else(|| Error::Deserialize("length overflow".to_string()))?;
 
     if data.len() < required_len {
         return Err(Error::Deserialize(format!(
