@@ -9,6 +9,7 @@ on:
 env:
   CARGO_TERM_COLOR: always
   RUSTFLAGS: "-D warnings"
+  PYO3_USE_ABI3_FORWARD_COMPATIBILITY: "1"
 
 jobs:
   rust-test:
@@ -20,6 +21,11 @@ jobs:
         os: [ubuntu-latest, windows-latest, macos-latest]
     steps:
       - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
 
       - name: Install Rust toolchain
         uses: dtolnay/rust-toolchain@stable
@@ -60,14 +66,13 @@ jobs:
       - name: Cache cargo
         uses: Swatinem/rust-cache@v2
 
-      - name: Install maturin
-        run: pip install maturin
+      - name: Install maturin and test dependencies
+        run: pip install maturin pytest pytest-cov hypothesis
 
-      - name: Build with maturin
-        run: maturin develop --release
-
-      - name: Install test dependencies
-        run: pip install pytest pytest-cov hypothesis
+      - name: Build and install with maturin
+        run: |
+          maturin build --release
+          pip install target/wheels/*.whl
 
       - name: Run tests
         run: pytest tests/ -v --cov=pywincode --cov-report=xml
