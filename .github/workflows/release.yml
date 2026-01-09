@@ -105,6 +105,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Create and push tag
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git tag -a "v${{ inputs.version }}" -m "Release v${{ inputs.version }}"
+          git push origin "v${{ inputs.version }}"
+
       - name: Download all artifacts
         uses: actions/download-artifact@v4
         with:
@@ -115,5 +122,6 @@ jobs:
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v1
         with:
+          tag_name: v${{ inputs.version }}
           files: dist/*
           generate_release_notes: true
